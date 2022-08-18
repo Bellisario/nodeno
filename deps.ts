@@ -5,4 +5,4 @@ const router = new Router();
 
 const GITHUB_TOKEN = Deno.env.get('GITHUB_TOKEN');
 
-export { app, router, GITHUB_TOKEN };
+export { app, GITHUB_TOKEN, router };

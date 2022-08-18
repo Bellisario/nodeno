@@ -1,3 +1,4 @@
+import { GITHUB_TOKEN } from './deps.ts';
 import { ReleaseResponse } from './ReleaseResponse.ts';
 
 const getLatestRelease = async (repo: string) => {
@@ -10,7 +11,11 @@ const getLatestRelease = async (repo: string) => {
 };
 
 const fetchReleaseData = async (repo: string): Promise<ReleaseResponse[]> => {
-    const res = await fetch(`https://api.github.com/repos/${repo}/releases`);
+    const res = await fetch(`https://api.github.com/repos/${repo}/releases`, GITHUB_TOKEN ? {
+        headers: {
+            Authorization: `token ${GITHUB_TOKEN}`,
+        },
+    } : {});
     const json = await res.json();
     return json;
 };
